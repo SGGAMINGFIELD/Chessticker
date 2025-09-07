@@ -1,0 +1,14 @@
+build an attracitve and working chess clock site with modern design make sure the clock offer default and custom time controls. write 'SAMPLE DESIGN MADE BY PRATIYUSH RAJ ' at top  right corner add a pawn logo and when user clicks on it there should a section of 'FREE CHESS ANALYSATION SITES' where player can analyse their chess game for free and the links of the website is wintrchess.com and chessigma.com also add some chess quotes by some famous player below the section make the website very much attractive and designer
+you didnt gave the  option of time increament after every move3 option in time control make the baground more designer add a aesthetic pattern and make the baground gray also make that clock move if we click anywhere in the white or black timer instead of a small move button 
+firstly the clock is not working when i am click in white or or black timer recangle it does not switches make it work secondly add a option at top to switch between light and dark mode and dark does not mean completly black i mean  grey also add sime lines or dotted stylish pattern in the background
+its still not working do one thing add 'MOVE' button but of big size so it should be easy for players 
+no not like this, when its white turn the move button should be appear in white timer rectangle same by black, single move button for  both player may cause a issue
+now even the clock stopped wrking please make it work with move button
+can you make the move made button bigger,  the time control option is so confusing make it more reliable and simple and also add time increament option and make the font of 'Time Controls' and 'Chess Clocks' fonts to normal and make all the letter in uppercase
+can you make all the letter littile bit bold
+write 'CHESS TICKER' Instead of 'CHESS CLOCK' at top 
+change the year from 2023 to 2025 at bottom
+move the section which comes on clicjing chess ticker to a new button beside the 'CHESS TICKER' the button should be a icon and make sure a new page pop up instead of opening thwe section in same page
+ move the section of chess analysation and quote on clcking chess ticker to a new button beside the 'CHESS TICKER' the button should be a icon make the icon arttractive
+why there is new site opening after clicking on the star make that section slides down instead opening a new page
+add the moon icon at side of star icon which changes the page to light mode and dark mode make sure it works completely everything shoud be visible and works completely fine

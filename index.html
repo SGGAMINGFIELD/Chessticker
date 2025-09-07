@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Clock | Pratiyush Raj</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+        
+        :root {
+            --dark-square: #769656;
+            --light-square: #eeeed2;
+            --accent: #b58863;
+            --text-dark: #2c3e50;
+            --text-light: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .chess-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .timer-container {
+            perspective: 1000px;
+        }
+        
+        .timer {
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            font-weight: 500;
+        }
+        
+        .timer.active {
+            transform: rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timer.white {
+            background-color: var(--light-square);
+            color: var(--text-dark);
+        }
+        
+        .timer.black {
+            background-color: var(--dark-square);
+            color: var(--text-light);
+        }
+        
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            font-weight: 500;
+        }
+        
+        .dropdown-open .dropdown-content {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .time-up {
+            animation: pulse 0.5s infinite;
+            background-color: #e74c3c !important;
+        }
+        
+        .click-sound {
+            display: none;
+        }
+        
+        .time-end-sound {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+                <i data-feather="chess-pawn" class="text-3xl text-amber-800"></i>
+                <span class="text-xl font-bold uppercase">CHESS TICKER</span>
+            </div>
+            <button onclick="toggleResources()" class="p-2 bg-amber-100 hover:bg-amber-200 rounded-full transition-all duration-300 transform hover:scale-110">
+                <i data-feather="star" class="w-6 h-6 text-amber-600"></i>
+            </button>
+        </div>
+        <div class="text-sm font-semibold text-gray-600">
+            SAMPLE DESIGN MADE BY PRATIYUSH RAJ
+        </div>
+    </header>
+
+    <!-- Resources Section -->
+    <div id="resources-section" class="bg-white shadow-lg mx-4 rounded-lg overflow-hidden hidden transition-all duration-500 ease-in-out">
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4 text-amber-800">FREE CHESS ANALYSIS SITES</h2>
+            <div class="space-y-4 mb-8">
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-amber-50 transition">
+                    <i data-feather="external-link" class="w-8 h-8 text-amber-600 mr-4"></i>
+                    <div>
+                        <h3 class="font-semibold text-lg">Wintr Chess</h3>
+                        <p class="text-gray-600">Advanced chess analysis and training</p>
+                        <a href="https://wintrchess.com" target="_blank" class="text-amber-600 hover:text-amber-700 font-medium mt-1 inline-block">
+                            Visit Site →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-amber-50 transition">
+                    <i data-feather="external-link" class="w-8 h-8 text-amber-600 mr-4"></i>
+                    <div>
+                        <h3 class="font-semibold text-lg">Chessigma</h3>
+                        <p class="text-gray-600">Comprehensive chess analysis platform</p>
+                        <a href="https://chessigma.com" target="_blank" class="text-amber-600 hover:text-amber-700 font-medium mt-1 inline-block">
+                            Visit Site →
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 class="text-2xl font-bold mb-4 text-amber-800">INSPIRATIONAL CHESS QUOTES</h2>
+            <div class="space-y-6">
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Chess is mental torture."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Garry Kasparov</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Some people think that if their opponent plays a beautiful game, it's OK to lose. I don't. You have to be merciless."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Magnus Carlsen</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"The hardest game to win is a won game."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Emanuel Lasker</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Chess is the gymnasium of the mind."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Blaise Pascal</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Timer Controls -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-6 text-center uppercase">TIME CONTROLS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="space-y-2">
+                        <label class="block font-semibold">WHITE (MINUTES)</label>
+                        <input type="number" id="white-minutes" min="0" max="120" value="10" 
+                            class="w-full border rounded-lg px-3 py-2 text-center text-xl">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block font-semibold">INCREMENT (SECONDS)</label>
+                        <input type="number" id="increment" min="0" max="60" value="0" 
+                            class="w-full border rounded-lg px-3 py-2 text-center text-xl">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block font-semibold">BLACK (MINUTES)</label>
+                        <input type="number" id="black-minutes" min="0" max="120" value="10" 
+                            class="w-full border rounded-lg px-3 py-2 text-center text-xl">
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button onclick="startGame()" id="start-btn" class="px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium text-lg transition">
+                        START GAME
+                    </button>
+                    <button onclick="pauseGame()" id="pause-btn" disabled class="px-8 py-4 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium text-lg transition">
+                        PAUSE
+                    </button>
+                    <button onclick="resetGame()" id="reset-btn" class="px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-lg transition">
+                        RESET
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Timers -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="timer-container">
+                    <div id="white-timer" class="timer white p-8 rounded-xl shadow-lg text-center transition-all duration-300">
+                        <div class="text-2xl font-bold mb-2">WHITE</div>
+                        <div id="white-time" class="text-6xl font-mono font-bold my-4">10:00</div>
+                        <button onclick="switchTurn('white')" class="w-full py-6 px-8 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition text-2xl font-bold uppercase hidden" id="white-btn">
+                            MOVE MADE
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="timer-container">
+                    <div id="black-timer" class="timer black p-8 rounded-xl shadow-lg text-center transition-all duration-300">
+                        <div class="text-2xl font-bold mb-2">BLACK</div>
+                        <div id="black-time" class="text-6xl font-mono font-bold my-4">10:00</div>
+                        <button onclick="switchTurn('black')" class="w-full py-6 px-8 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg transition text-2xl font-bold uppercase hidden" id="black-btn">
+                            MOVE MADE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>Chess Clock Web App | Designed by Pratiyush Raj</p>
+            <p class="text-gray-400 text-sm mt-2">© 2025 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" class="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-click-1114.mp3"></audio>
+    <audio id="time-end-sound" class="time-end-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
+
+    <script>
+        // Initialize libraries
+        AOS.init();
+        feather.replace();
+        
+        // Toggle resources section
+        function toggleResources() {
+            const resourcesSection = document.getElementById('resources-section');
+            resourcesSection.classList.toggle('hidden');
+            
+            // Smooth slide animation
+            if (!resourcesSection.classList.contains('hidden')) {
+                resourcesSection.style.maxHeight = '0';
+                setTimeout(() => {
+                    resourcesSection.style.maxHeight = resourcesSection.scrollHeight + 'px';
+                }, 10);
+            } else {
+                resourcesSection.style.maxHeight = '0';
+            }
+            
+            // Play click sound
+            document.getElementById('click-sound').play();
+        }
+        
+        // Game state variables
+        let gameActive = false;
+        let currentPlayer = 'white';
+        let whiteTime = 600; // 10 minutes in seconds
+        let blackTime = 600; // 10 minutes in seconds
+        let increment = 0; // Time increment in seconds
+        let timerInterval;
+        
+        // DOM elements
+        const whiteTimerElement = document.getElementById('white-time');
+        const blackTimerElement = document.getElementById('black-time');
+        const whiteTimerContainer = document.getElementById('white-timer');
+        const blackTimerContainer = document.getElementById('black-timer');
+        const whiteButton = document.getElementById('white-btn');
+        const blackButton = document.getElementById('black-btn');
+        const startButton = document.getElementById('start-btn');
+        const pauseButton = document.getElementById('pause-btn');
+        const resetButton = document.getElementById('reset-btn');
+        const logoDropdown = document.getElementById('logo-dropdown');
+        const dropdownContent = document.getElementById('dropdown-content');
+        
+        
+        // Format time as MM:SS
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // Update timer displays
+        function updateTimers() {
+            whiteTimerElement.textContent = formatTime(whiteTime);
+            blackTimerElement.textContent = formatTime(blackTime);
+        }
+        
+        // Set time from input fields
+        function setTime() {
+            const whiteMinutes = parseInt(document.getElementById('white-minutes').value) || 10;
+            const blackMinutes = parseInt(document.getElementById('black-minutes').value) || 10;
+            increment = parseInt(document.getElementById('increment').value) || 0;
+            
+            whiteTime = whiteMinutes * 60;
+            blackTime = blackMinutes * 60;
+            updateTimers();
+        }
+        
+        // Start the game
+        function startGame() {
+            if (gameActive) return;
+            
+            // Get time from input fields
+            const whiteMinutes = parseInt(document.getElementById('white-minutes').value) || 10;
+            const blackMinutes = parseInt(document.getElementById('black-minutes').value) || 10;
+            increment = parseInt(document.getElementById('increment').value) || 0;
+            
+            whiteTime = whiteMinutes * 60;
+            blackTime = blackMinutes * 60;
+            
+            if (whiteTime <= 0 || blackTime <= 0) {
+                alert("Please enter valid time controls for both players");
+                return;
+            }
+            
+            gameActive = true;
+            currentPlayer = 'white';
+            
+            // Update UI
+            startButton.disabled = true;
+            pauseButton.disabled = false;
+            whiteButton.classList.remove('hidden');
+            blackButton.classList.add('hidden');
+            
+            whiteTimerContainer.classList.add('active');
+            blackTimerContainer.classList.remove('active');
+            
+            // Start timer
+            timerInterval = setInterval(() => {
+                if (currentPlayer === 'white') {
+                    whiteTime--;
+                    if (whiteTime <= 0) {
+                        endGame('white');
+                    }
+                } else {
+                    blackTime--;
+                    if (blackTime <= 0) {
+                        endGame('black');
+                    }
+                }
+                
+                updateTimers();
+                
+                // Flash warning when time is low
+                if ((currentPlayer === 'white' && whiteTime <= 10) || 
+                    (currentPlayer === 'black' && blackTime <= 10)) {
+                    const timer = currentPlayer === 'white' ? whiteTimerElement : blackTimerElement;
+                    timer.classList.add('text-red-500');
+                    setTimeout(() => timer.classList.remove('text-red-500'), 500);
+                }
+            }, 1000);
+            
+            // Play click sound
+            document.getElementById('click-sound').play();
+        }
+        
+        // Pause the game
+        function pauseGame() {
+            if (!gameActive) return;
+            
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            // Update UI
+            pauseButton.disabled = true;
+            startButton.disabled = false;
+            
+            // Play click sound
+            document.getElementById('click-sound').play();
+        }
+        
+        // Reset the game
+        function resetGame() {
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            // Reset to initial values
+            setTime();
+            currentPlayer = 'white';
+            
+            // Update UI
+            updateTimers();
+            startButton.disabled = false;
+            pauseButton.disabled = true;
+            
+            whiteTimerContainer.classList.remove('active', 'time-up');
+            blackTimerContainer.classList.remove('active', 'time-up');
+            
+            whiteButton.classList.add('hidden');
+            blackButton.classList.add('hidden');
+            
+            // Play click sound
+            document.getElementById('click-sound').play();
+        }
+        
+        // Switch turn between players
+        function switchTurn(player) {
+            if (!gameActive || currentPlayer !== player) return;
+            
+            // Add increment to the player who just moved
+            if (player === 'white') {
+                whiteTime += increment;
+            } else {
+                blackTime += increment;
+            }
+            
+            currentPlayer = player === 'white' ? 'black' : 'white';
+            
+            // Update UI
+            if (currentPlayer === 'white') {
+                whiteTimerContainer.classList.add('active');
+                blackTimerContainer.classList.remove('active');
+                whiteButton.classList.remove('hidden');
+                blackButton.classList.add('hidden');
+            } else {
+                whiteTimerContainer.classList.remove('active');
+                blackTimerContainer.classList.add('active');
+                whiteButton.classList.add('hidden');
+                blackButton.classList.remove('hidden');
+            }
+            
+            updateTimers();
+            
+            // Play click sound
+            document.getElementById('click-sound').play();
+        }
+        
+        // End the game when time runs out
+        function endGame(losingPlayer) {
+            clearInterval(timerInterval);
+            gameActive = false;
+            
+            // Highlight the losing player's timer
+            if (losingPlayer === 'white') {
+                whiteTimerContainer.classList.add('time-up');
+            } else {
+                blackTimerContainer.classList.add('time-up');
+            }
+            
+            // Play end sound
+            document.getElementById('time-end-sound').play();
+            
+            // Show alert
+            alert(`${losingPlayer === 'white' ? 'Black' : 'White'} wins by time!`);
+            
+            // Disable buttons
+            startButton.disabled = true;
+            pauseButton.disabled = true;
+            whiteButton.classList.add('hidden');
+            blackButton.classList.add('hidden');
+        }
+        
+        // Initialize the app
+        setTime();
+    </script>
+</body>
+</html>

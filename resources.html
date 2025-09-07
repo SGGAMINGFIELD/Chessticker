@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Resources | Chess Ticker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .chess-font {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="bg-amber-600 text-white p-6 text-center">
+            <h1 class="text-3xl font-bold uppercase chess-font">Chess Resources</h1>
+            <p class="mt-2">Free tools and inspiration for chess players</p>
+        </div>
+        
+        <!-- Analysis Sites -->
+        <div class="p-6 border-b">
+            <h2 class="text-2xl font-bold mb-4 text-amber-800">FREE CHESS ANALYSIS SITES</h2>
+            <div class="space-y-4">
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-amber-50 transition">
+                    <i data-feather="external-link" class="w-8 h-8 text-amber-600 mr-4"></i>
+                    <div>
+                        <h3 class="font-semibold text-lg">Wintr Chess</h3>
+                        <p class="text-gray-600">Advanced chess analysis and training</p>
+                        <a href="https://wintrchess.com" target="_blank" class="text-amber-600 hover:text-amber-700 font-medium mt-1 inline-block">
+                            Visit Site →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-amber-50 transition">
+                    <i data-feather="external-link" class="w-8 h-8 text-amber-600 mr-4"></i>
+                    <div>
+                        <h3 class="font-semibold text-lg">Chessigma</h3>
+                        <p class="text-gray-600">Comprehensive chess analysis platform</p>
+                        <a href="https://chessigma.com" target="_blank" class="text-amber-600 hover:text-amber-700 font-medium mt-1 inline-block">
+                            Visit Site →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chess Quotes -->
+        <div class="p-6">
+            <h2 class="text-2xl font-bold mb-4 text-amber-800">INSPIRATIONAL CHESS QUOTES</h2>
+            <div class="space-y-6">
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Chess is mental torture."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Garry Kasparov</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Some people think that if their opponent plays a beautiful game, it's OK to lose. I don't. You have to be merciless."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Magnus Carlsen</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"The hardest game to win is a won game."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Emanuel Lasker</p>
+                </div>
+                
+                <div class="p-4 bg-amber-50 rounded-lg border-l-4 border-amber-500">
+                    <p class="italic text-lg">"Chess is the gymnasium of the mind."</p>
+                    <p class="font-semibold text-amber-700 mt-2">— Blaise Pascal</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="bg-gray-100 p-4 text-center">
+            <p class="text-sm text-gray-600">© 2025 Chess Ticker | Designed by Pratiyush Raj</p>
+        </div>
+    </div>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
