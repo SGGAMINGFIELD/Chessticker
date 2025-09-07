@@ -3,12 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chess Clock | Pratiyush Raj</title>
+
+    <!-- SEO Meta -->
+    <title>Chessticker | Free Online Chess Clock & Timer | Tournament Style</title>
+    <meta name="description" content="Free online chess clock and timer for your games. Chessticker offers customizable tournament-style timing with simple controls and clean design.">
+    <meta name="keywords" content="Chessticker, chessticker, chess clock, chess timer, online chess clock, free chess timer, tournament chess clock, chess timing, game timer, chess clock online">
+    <meta name="author" content="Chessticker">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicon / Logo -->
+    <link rel="icon" type="image/png" href="icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Chessticker - Free Online Chess Clock & Timer">
+    <meta property="og:description" content="A free, customizable chess clock for your games with tournament-style timing options.">
+    <meta property="og:image" content="https://chessticker.lifesky.fun/icon.png">
+    <meta property="og:url" content="https://chessticker.lifesky.fun">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Chessticker - Free Online Chess Clock">
+    <meta name="twitter:description" content="A clean, customizable chess timer for your games with simple controls.">
+    <meta name="twitter:image" content="https://chessticker.lifesky.fun/icon.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://chessticker.lifesky.fun">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Chessticker",
+      "url": "https://chessticker.lifesky.fun",
+      "description": "A free online chess clock and timer with customizable time controls.",
+      "applicationCategory": "Utility",
+      "operatingSystem": "All",
+      "author": {
+        "@type": "Person",
+        "name": "Pratiyush Raj"
+      }
+    }
+    </script>
+
+    <!-- CSS & Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap');
         
@@ -88,6 +133,42 @@
         .time-end-sound {
             display: none;
         }
+
+        /* SEO Content Styling */
+        .seo-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .seo-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+        
+        .seo-content h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 0.8rem;
+            color: #34495e;
+            font-weight: 600;
+        }
+        
+        .seo-content p {
+            margin-bottom: 1.2rem;
+        }
+        
+        .seo-content ul {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+        }
+        
+        .seo-content li {
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -95,15 +176,15 @@
     <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
         <div class="flex items-center space-x-4">
             <div class="flex items-center space-x-2">
-                <i data-feather="chess-pawn" class="text-3xl text-amber-800"></i>
-                <span class="text-xl font-bold uppercase">CHESS TICKER</span>
+                <i data-feather="clock" class="text-3xl text-amber-800"></i>
+                <span class="text-xl font-bold uppercase">CHESSTICKER</span>
             </div>
             <button onclick="toggleResources()" class="p-2 bg-amber-100 hover:bg-amber-200 rounded-full transition-all duration-300 transform hover:scale-110">
                 <i data-feather="star" class="w-6 h-6 text-amber-600"></i>
             </button>
         </div>
         <div class="text-sm font-semibold text-gray-600">
-            SAMPLE DESIGN MADE BY PRATIYUSH RAJ
+            CHESS CLOCK BY PRATIYUSH RAJ
         </div>
     </header>
 
@@ -163,6 +244,34 @@
     <!-- Main Content -->
     <main class="flex-grow container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto">
+            <!-- SEO Content Section -->
+            <div class="seo-content bg-white rounded-xl shadow-lg p-6 mb-8">
+                <h1 class="text-3xl font-bold mb-4 text-center text-amber-800">Free Online Chess Clock - Tournament Timer</h1>
+                <p class="text-center text-lg mb-6">Chessticker is a free, easy-to-use online chess clock for your games. Set custom time controls with increment for tournament-style timing.</p>
+                
+                <h2>Why Use a Chess Clock?</h2>
+                <p>Chess clocks are essential for competitive play, ensuring both players have equal thinking time. Our digital chess timer replicates traditional tournament clocks with modern convenience.</p>
+                
+                <h2>How to Use This Chess Clock</h2>
+                <ol>
+                    <li>Set the desired time for each player (in minutes)</li>
+                    <li>Add increment time if needed (seconds added after each move)</li>
+                    <li>Click "START GAME" to begin</li>
+                    <li>Press "MOVE MADE" after completing your turn</li>
+                    <li>The clock automatically switches to your opponent's time</li>
+                </ol>
+                
+                <h2>Features of Our Chess Timer</h2>
+                <ul>
+                    <li>Customizable time controls for both players</li>
+                    <li>Increment (delay) setting for tournament play</li>
+                    <li>Clear visual indicators for active player</li>
+                    <li>Time warning when seconds are running low</li>
+                    <li>Audible alerts when time expires</li>
+                    <li>Fully responsive design works on all devices</li>
+                </ul>
+            </div>
+            
             <!-- Timer Controls -->
             <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
                 <h2 class="text-2xl font-bold mb-6 text-center uppercase">TIME CONTROLS</h2>
@@ -220,14 +329,44 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Additional SEO Content -->
+            <div class="seo-content bg-white rounded-xl shadow-lg p-6 mt-8">
+                <h2>Popular Chess Time Controls</h2>
+                <p>Different time controls create varied playing experiences:</p>
+                
+                <h3>Bullet Chess (Extremely Fast)</h3>
+                <p>1-2 minutes per player, often with 1-second increment. Requires lightning-fast moves.</p>
+                
+                <h3>Blitz Chess (Fast)</h3>
+                <p>3-5 minutes per player, sometimes with small increment. Popular for quick games.</p>
+                
+                <h3>Rapid Chess (Moderate)</h3>
+                <p>10-30 minutes per player. Balances thinking time with game length.</p>
+                
+                <h3>Classical Chess (Standard Tournament)</h3>
+                <p>90+ minutes with increment. Allows for deep calculation and strategy.</p>
+                
+                <h2>Benefits of Using a Digital Chess Clock</h2>
+                <p>Digital chess clocks like Chessticker offer advantages over traditional analog clocks:</p>
+                <ul>
+                    <li>Precise time tracking to the second</li>
+                    <li>Easy to set custom time controls</li>
+                    <li>Clear digital display</li>
+                    <li>Audible alerts when time is low</li>
+                    <li>No mechanical parts to maintain</li>
+                    <li>Accessible from any device with internet</li>
+                </ul>
+            </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
+    <footer class="bg-gray-800 text-white py-6 mt-8">
         <div class="container mx-auto px-4 text-center">
             <p>Chess Clock Web App | Powered By Lifesky Network</p>
             <p class="text-gray-400 text-sm mt-2">Lifesky Network Servers Owned By Pratiyush Raj</p>
+            <p class="text-gray-400 text-sm mt-1">© 2023 Chessticker - Free Online Chess Clock</p>
         </div>
     </footer>
 
